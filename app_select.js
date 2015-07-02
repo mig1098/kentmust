@@ -28,10 +28,11 @@ var app_select = (function(){
                   success: function(r) {
                     //console.log(r);
                     hideCart();
-                    if(typeof callback == 'function'){
-                        callback(r);
+                    if(r.data!='false' && r.data!=false){
+                        if(typeof callback == 'function'){
+                            callback(r);
+                        }
                     }
-                    return false;
                   },
                   error: function(e) {
                     alert(e.message);
@@ -64,7 +65,7 @@ var app_select = (function(){
         },
         selectObject:function(_select,_pair){
             arrayCodes =[];
-            arrNames  = [];
+            arrNames  = [];//name of option labels
             jQuery(_select).find('option').each(function(i,elm){
                 if(i>0){
                     var name = jQuery(elm).text();
